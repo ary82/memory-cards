@@ -10,7 +10,7 @@ function item(name, image) {
 }
 
 // Populate Array
-export default async function populateArray(array, length) {
+export default async function populateArray(length) {
   let array = [];
   array.length = length;
   for (let index = 0; index < array.length; index++) {
@@ -25,8 +25,6 @@ export default async function populateArray(array, length) {
       response_json.name,
       response_json.sprites.front_default,
     );
-    console.log(array[index]);
   }
-  console.log(array);
   return array;
 }
