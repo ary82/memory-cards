@@ -1,5 +1,3 @@
-export let array = [];
-
 // Random Number Generator
 function random(pool) {
   let num = Math.floor(Math.random() * pool) + 1;
@@ -12,10 +10,12 @@ function item(name, image) {
 }
 
 // Populate Array
-async function populateArray() {
-  for (let index = 0; index < 10; index++) {
+export default async function populateArray(array, length) {
+  let array = [];
+  array.length = length;
+  for (let index = 0; index < array.length; index++) {
     let response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${random(1017)}`,
+      `https://pokeapi.co/api/v2/pokemon/${random(1010)}`,
       {
         mode: "cors",
       },
@@ -28,5 +28,5 @@ async function populateArray() {
     console.log(array[index]);
   }
   console.log(array);
+  return array;
 }
-populateArray();
