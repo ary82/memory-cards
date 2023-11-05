@@ -1,4 +1,4 @@
-let array = [];
+export let array = [];
 
 // Random Number Generator
 function random(pool) {
