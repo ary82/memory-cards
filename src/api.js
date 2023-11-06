@@ -1,8 +1,5 @@
-// Random Number Generator
-function random(pool) {
-  let num = Math.floor(Math.random() * pool) + 1;
-  return num;
-}
+// Import rng
+import rng from "./rng.js";
 
 // Factory Function
 function item(name, image) {
@@ -15,7 +12,7 @@ export default async function populateArray(length) {
   array.length = length;
   for (let index = 0; index < array.length; index++) {
     let response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${random(1010)}`,
+      `https://pokeapi.co/api/v2/pokemon/${rng(1, 1010)}`,
       {
         mode: "cors",
       },
