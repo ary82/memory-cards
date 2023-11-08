@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import rng from "./rng.js";
 import Card from "./Card.jsx";
+import "./styles/card.scss";
 
 export default function CardList({ num }) {
   const [cardList, setCardList] = useState([]);
@@ -31,6 +32,7 @@ export default function CardList({ num }) {
       newArr.push(item);
     }
     setCardList(newArr);
+    setloading(false);
     console.log(newArr);
   }
   const shuffle = () => {
@@ -39,16 +41,21 @@ export default function CardList({ num }) {
     setCardList(newArr);
   };
 
+  const [loading, setloading] = useState(true);
   useEffect(() => {
     populateArray();
   }, []);
 
   return (
     <div>
-      CardLisjt
-      <ul>
+      {loading ? <h1>loading...</h1> : console.log("complete")}
+      <ul className="cardlist">
         {cardList.map((card) => (
-          <li key={card.id} onClick={() => shuffle()}>
+          <li
+            className="card"
+            key={card.id}
+            onClick={() => shuffle()}
+          >
             <Card
               name={card.name}
               image={card.img}
