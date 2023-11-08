@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import rng from "./rng.js";
+import Card from "./Card.jsx";
 
 export default function CardList({ num }) {
   const [cardList, setCardList] = useState([]);
@@ -16,7 +17,6 @@ export default function CardList({ num }) {
         img: response_json.sprites.front_default,
         id: crypto.randomUUID(),
       };
-      console.log(item);
       return item;
     } catch (error) {
       console.log(error);
@@ -27,9 +27,11 @@ export default function CardList({ num }) {
     let newArr = [];
     for (let index = 0; index < num; index++) {
       const item = await getDataFromApi();
+      console.log(item);
       newArr.push(item);
     }
     setCardList(newArr);
+    console.log(newArr);
   }
 
   useEffect(() => {
@@ -42,8 +44,7 @@ export default function CardList({ num }) {
       <ul>
         {cardList.map((card) => (
           <li key={card.id}>
-            <img src={card.img} alt="" />
-            <h2>{card.name}</h2>
+            <Card name={card.name} image={card.image} />
           </li>
         ))}
       </ul>
