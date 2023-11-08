@@ -1,9 +1,11 @@
 import CardList from "./CardList.jsx";
+import "./styles/main.scss"
 
 function App() {
   return (
     <>
-      <CardList num="3" />
+      <h1 className="title">Memory Game</h1>
+      <CardList num="5" />
     </>
   );
 }
