@@ -33,6 +33,11 @@ export default function CardList({ num }) {
     setCardList(newArr);
     console.log(newArr);
   }
+  const shuffle = () => {
+    let newArr = [...cardList];
+    newArr.sort(() => Math.random() - 0.5);
+    setCardList(newArr);
+  };
 
   useEffect(() => {
     populateArray();
@@ -43,8 +48,11 @@ export default function CardList({ num }) {
       CardLisjt
       <ul>
         {cardList.map((card) => (
-          <li key={card.id}>
-            <Card name={card.name} image={card.image} />
+          <li key={card.id} onClick={() => shuffle()}>
+            <Card
+              name={card.name}
+              image={card.img}
+            />
           </li>
         ))}
       </ul>
