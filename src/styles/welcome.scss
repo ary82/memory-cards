@@ -1,0 +1,33 @@
+@use "./main.scss";
+
+.welcome {
+  text-align: center;
+}
+
+.modes {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  gap: 2rem;
+  .easy {
+    background-color: main.$success;
+  }
+  .medium {
+    background-color: main.$warning;
+  }
+  .hard {
+    background-color: main.$error;
+  }
+}
+button {
+  border-radius: 1rem;
+  border: none;
+  box-shadow: 2px 2px 50px main.$bg-dark;
+}
+h2 {
+  color: main.$fg;
+}
+img {
+  width: 120px;
+  height: 120px;
+}
