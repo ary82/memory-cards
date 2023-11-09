@@ -32,7 +32,6 @@ export default function CardList({ num }) {
       newArr.push(item);
     }
     setCardList(newArr);
-    setloading(false);
     console.log(newArr);
   }
   const shuffle = () => {
@@ -41,14 +40,12 @@ export default function CardList({ num }) {
     setCardList(newArr);
   };
 
-  const [loading, setloading] = useState(true);
   useEffect(() => {
     populateArray();
   }, []);
 
   return (
     <div>
-      {loading ? <h1>loading...</h1> : console.log("complete")}
       <ul className="cardlist">
         {cardList.map((card) => (
           <li
