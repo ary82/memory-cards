@@ -26,7 +26,7 @@ function App() {
       setmaxScore(chosenArray.length);
       localStorage.setItem("maxScore", JSON.stringify(chosenArray.length));
     }
-    if (chosenArray.length === (game * 5)) {
+    if (chosenArray.length === (game * 5) && game !== 0) {
       setgame(4);
     }
   }, [chosenArray.length]);
