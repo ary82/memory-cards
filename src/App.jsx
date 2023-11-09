@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   // Game States. 0 = welcome, 1 = easy mode, 2 = medium mode, 3 = hard mode
-  // -1 = won, -2 = lose
+  // 4 = won, 5 = lose
   const [game, setgame] = useState(0);
   // Score States
   const [chosenArray, setchosenArray] = useState([]);
@@ -27,13 +27,13 @@ function App() {
       localStorage.setItem("maxScore", JSON.stringify(chosenArray.length));
     }
     if (chosenArray.length === (game * 5)) {
-      setgame(-1);
+      setgame(4);
     }
   }, [chosenArray.length]);
 
   // Function for checking if button has already been pressed
   function checkSame(string) {
-    chosenArray.includes(string) ? setgame(-2) : (
+    chosenArray.includes(string) ? setgame(5) : (
       setchosenArray([...chosenArray, string])
     );
   }
@@ -47,9 +47,9 @@ function App() {
             hard={() => setgame(3)}
           />
         )
-        : game === -1
+        : game === 4
         ? <Win />
-        : game === -2
+        : game === 5
         ? <Lose />
         : (
           <>
