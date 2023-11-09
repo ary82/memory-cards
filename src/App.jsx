@@ -1,7 +1,7 @@
 import CardList from "./CardList.jsx";
 import Welcome from "./Welcome.jsx";
 import Win from "./Win.jsx";
-import Lose from "Lose.jsx";
+import Lose from "./Lose.jsx";
 import "./styles/main.scss";
 import { useEffect, useState } from "react";
 
