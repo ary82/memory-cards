@@ -2,32 +2,77 @@
 
 .welcome {
   text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  h1 {
+    padding: 1.4rem;
+    margin: 0.6rem;
+  }
 }
 
 .modes {
   display: flex;
   justify-content: center;
   padding: 2rem;
-  gap: 2rem;
+  gap: 1.2rem;
   .easy {
-    background-color: main.$success;
+    background-color: main.$green;
   }
   .medium {
-    background-color: main.$warning;
+    background-color: main.$yellow;
   }
   .hard {
-    background-color: main.$error;
+    background-color: main.$red;
   }
 }
 button {
   border-radius: 1rem;
+  padding: 0 1rem;
   border: none;
-  box-shadow: 2px 2px 50px main.$bg-dark;
+  box-shadow: 5px 5px 10px main.$bg-dark;
+  transition: transform 75ms ease-in-out;
+  &:hover {
+    transform: translate(0.5%, -2%) scale(1.05);
+  }
+  &:active {
+    transform: scale(1);
+  }
 }
 h2 {
   color: main.$fg;
+  margin-top: 0;
+}
+h3 {
+  margin: 0;
 }
 img {
-  width: 120px;
-  height: 120px;
+  min-width: 100px;
+}
+p {
+  max-width: 65ch;
+  margin: auto;
+  padding: 1.2rem;
+  margin: 0;
+}
+@media screen and (max-width: 500px) {
+  .welcome {
+    position: static;
+
+    transform: translate(0, 0);
+  }
+  .modes {
+    flex-direction: column;
+  }
+  button{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  h2 {
+    margin: 0;
+    padding: 2rem 0;
+    flex-grow: 1;
+  }
 }
