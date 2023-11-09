@@ -4,7 +4,7 @@ import rng from "./rng.js";
 import Card from "./Card.jsx";
 import "./styles/card.scss";
 
-export default function CardList({ num }) {
+export default function CardList({ num, check }) {
   const [cardList, setCardList] = useState([]);
 
   const getDataFromApi = async () => {
@@ -51,7 +51,10 @@ export default function CardList({ num }) {
           <li
             className="card"
             key={card.id}
-            onClick={() => shuffle()}
+            onClick={() => {
+              check(card.name);
+              shuffle();
+            }}
           >
             <Card
               name={card.name}
