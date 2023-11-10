@@ -1,0 +1,29 @@
+@use "./main.scss";
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: main.$bg-dark;
+  opacity: 0.5;
+}
+dialog {
+  min-width: 400px;
+  min-height: 300px;
+  position: fixed;
+  margin: auto;
+  color: main.$fg;
+  background-color: main.$bg;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+svg {
+  width: 30px;
+}
+.dialog > h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 2.5rem;
+}
