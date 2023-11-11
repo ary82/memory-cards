@@ -1,18 +1,17 @@
 import CardList from "./CardList.jsx";
 import Welcome from "./Welcome.jsx";
-import Win from "./Win.jsx";
-import Lose from "./Lose.jsx";
+import End from "./End.jsx";
 import "./styles/main.scss";
 import { useEffect, useState } from "react";
 
 function App() {
   // Game States. 0 = welcome, 1 = easy mode, 2 = medium mode, 3 = hard mode
-  // 4 = won, 5 = lose
+  // .1 = win, .2 = lose
   const [game, setgame] = useState(0);
   // Score States
   const [chosenArray, setchosenArray] = useState([]);
 
-  // Initialize localstorage
+  // Initialize localstorage for max Score
   if (!localStorage.getItem("maxScore")) {
     localStorage.setItem("maxScore", JSON.stringify(0));
   }
@@ -27,13 +26,13 @@ function App() {
       localStorage.setItem("maxScore", JSON.stringify(chosenArray.length));
     }
     if (chosenArray.length === (game * 5) && game !== 0) {
-      setgame(4);
+      setgame(game + 0.1);
     }
   }, [chosenArray.length]);
 
   // Function for checking if button has already been pressed
   function checkSame(string) {
-    chosenArray.includes(string) ? setgame(5) : (
+    chosenArray.includes(string) ? setgame(game + 0.2) : (
       setchosenArray([...chosenArray, string])
     );
   }
@@ -47,10 +46,36 @@ function App() {
             hard={() => setgame(3)}
           />
         )
-        : game === 4
-        ? <Win />
-        : game === 5
-        ? <Lose />
+        : (game - Math.floor(game) <= 0.11 && game - Math.floor(game) > 0)
+        ? (
+          <End
+            win={true}
+            home={() => {
+              setchosenArray([]);
+              setgame(0);
+            }}
+            restart={() => {
+              setchosenArray([]);
+              setgame(Math.floor(game));
+            }}
+            currentMode={Math.floor(game)}
+          />
+        )
+        : (game - Math.floor(game) <= 0.21 && game - Math.floor(game) > 0)
+        ? (
+          <End
+            win={false}
+            home={() => {
+              setchosenArray([]);
+              setgame(0);
+            }}
+            restart={() => {
+              setchosenArray([]);
+              setgame(Math.floor(game));
+            }}
+            currentMode={Math.floor(game)}
+          />
+        )
         : (
           <>
             <h1 className="title">Memory Game</h1>
