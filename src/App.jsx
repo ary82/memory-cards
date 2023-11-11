@@ -46,38 +46,39 @@ function App() {
             hard={() => setgame(3)}
           />
         )
-        : (game - Math.floor(game) <= 0.11 && game - Math.floor(game) > 0)
-        ? (
-          <End
-            win={true}
-            home={() => {
-              setchosenArray([]);
-              setgame(0);
-            }}
-            restart={() => {
-              setchosenArray([]);
-              setgame(Math.floor(game));
-            }}
-            currentMode={Math.floor(game)}
-          />
-        )
-        : (game - Math.floor(game) <= 0.21 && game - Math.floor(game) > 0)
-        ? (
-          <End
-            win={false}
-            home={() => {
-              setchosenArray([]);
-              setgame(0);
-            }}
-            restart={() => {
-              setchosenArray([]);
-              setgame(Math.floor(game));
-            }}
-            currentMode={Math.floor(game)}
-          />
-        )
         : (
           <>
+            {(game - Math.floor(game) <= 0.11 && game - Math.floor(game) > 0)
+              ? (
+                <End
+                  win={true}
+                  home={() => {
+                    setchosenArray([]);
+                    setgame(0);
+                  }}
+                  restart={() => {
+                    setchosenArray([]);
+                    setgame(Math.floor(game));
+                  }}
+                  currentMode={Math.floor(game)}
+                />
+              )
+              : (game - Math.floor(game) <= 0.21 && game - Math.floor(game) > 0)
+              ? (
+                <End
+                  win={false}
+                  home={() => {
+                    setchosenArray([]);
+                    setgame(0);
+                  }}
+                  restart={() => {
+                    setchosenArray([]);
+                    setgame(Math.floor(game));
+                  }}
+                  currentMode={Math.floor(game)}
+                />
+              )
+              : false}
             <h1 className="title">Memory Game</h1>
             <h3>Score: {chosenArray.length}</h3>
             <h3>Max Score: {maxScore}</h3>
