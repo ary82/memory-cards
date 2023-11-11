@@ -8,8 +8,10 @@
   bottom: 0;
   background-color: main.$bg-dark;
   opacity: 0.6;
+  z-index: 2;
 }
 dialog {
+  z-index: 3;
   position: fixed;
   border-radius: 10px;
   top: 0;
