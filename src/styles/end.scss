@@ -7,27 +7,26 @@
   right: 0;
   bottom: 0;
   background-color: main.$bg-dark;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 dialog {
-  min-width: 400px;
-  min-height: 300px;
   position: fixed;
   border-radius: 10px;
-  padding: 1.5rem;
-  top: 33%;
+  top: 0;
+  bottom: 0;
+  padding: 1rem;
   color: main.$fg;
   background-color: main.$bg;
 }
 .dialog > h1 {
   margin: 0;
-  padding: 0;
-  font-size: 2.5rem;
+  font-size: 2.3rem;
 }
 
 .button_div {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   svg {
     width: 35px;
@@ -35,7 +34,6 @@ dialog {
   button {
     padding: 0.5rem;
     display: flex;
-    justify-content: center;
     align-items: center;
     min-width: 180px;
     background-color: main.$blue;
@@ -44,5 +42,28 @@ dialog {
     h3 {
       flex-grow: 1;
     }
+  }
+}
+.message {
+  display: flex;
+  align-items: center;
+  p {
+    font-size: 1.1rem;
+    max-width: 40ch;
+  }
+  img {
+    width: 180px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .message > p {
+    font-size: 1rem;
+  }
+  .dialog > h1 {
+    font-size: 2rem;
+  }
+  .message {
+    flex-direction: column;
   }
 }
