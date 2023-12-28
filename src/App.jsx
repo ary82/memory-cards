@@ -80,8 +80,10 @@ function App() {
               )
               : false}
             <h1 className="title">Memory Game</h1>
-            <h3>Score: {chosenArray.length}</h3>
-            <h3>Max Score: {maxScore}</h3>
+            <div className="scorelist">
+              <h3>Score: {chosenArray.length}</h3>
+              <h3>Max Score: {maxScore}</h3>
+            </div>
             <CardList num={game * 5} check={(string) => checkSame(string)} />
           </>
         )}
