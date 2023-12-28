@@ -24,6 +24,7 @@ export default function CardList({ num, check }) {
     }
   };
 
+  const [loading, setloading] = useState(true);
   async function populateArray() {
     let newArr = [];
     for (let index = 0; index < num; index++) {
@@ -31,6 +32,7 @@ export default function CardList({ num, check }) {
       console.log(item);
       newArr.push(item);
     }
+    setloading(false);
     setCardList(newArr);
     console.log(newArr);
   }
@@ -46,23 +48,25 @@ export default function CardList({ num, check }) {
 
   return (
     <div>
-      <ul className="cardlist">
-        {cardList.map((card) => (
-          <li
-            className="card"
-            key={card.id}
-            onClick={() => {
-              check(card.name);
-              shuffle();
-            }}
-          >
-            <Card
-              name={card.name}
-              image={card.img}
-            />
-          </li>
-        ))}
-      </ul>
+      {loading ? <p className="loading">Generating Cards...</p> : (
+        <ul className="cardlist">
+          {cardList.map((card) => (
+            <li
+              className="card"
+              key={card.id}
+              onClick={() => {
+                check(card.name);
+                shuffle();
+              }}
+            >
+              <Card
+                name={card.name}
+                image={card.img}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
