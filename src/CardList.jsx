@@ -6,6 +6,7 @@ import "./styles/card.scss";
 
 export default function CardList({ num, check }) {
   const [cardList, setCardList] = useState([]);
+  const [generated, setgenerated] = useState(0);
 
   const getDataFromApi = async () => {
     try {
@@ -29,6 +30,7 @@ export default function CardList({ num, check }) {
     let newArr = [];
     for (let index = 0; index < num; index++) {
       const item = await getDataFromApi();
+      setgenerated((s) => s + 1);
       console.log(item);
       newArr.push(item);
     }
@@ -48,25 +50,27 @@ export default function CardList({ num, check }) {
 
   return (
     <div>
-      {loading ? <p className="loading">Generating Cards...</p> : (
-        <ul className="cardlist">
-          {cardList.map((card) => (
-            <li
-              className="card"
-              key={card.id}
-              onClick={() => {
-                check(card.name);
-                shuffle();
-              }}
-            >
-              <Card
-                name={card.name}
-                image={card.img}
-              />
-            </li>
-          ))}
-        </ul>
-      )}
+      {loading
+        ? <p className="loading">Generating Cards - {generated}/{num}</p>
+        : (
+          <ul className="cardlist">
+            {cardList.map((card) => (
+              <li
+                className="card"
+                key={card.id}
+                onClick={() => {
+                  check(card.name);
+                  shuffle();
+                }}
+              >
+                <Card
+                  name={card.name}
+                  image={card.img}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
     </div>
   );
 }
